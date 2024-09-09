@@ -1,0 +1,12 @@
+{% extends "base/base.html" %}
+
+{% block title %}Edit Blog{% endblock title %}
+
+{% block content %}
+<h3>Are you sure to delete the blog? If yes, click on delete</h3>
+<form method='POST'>
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="{% url "blogs" %}" class="btn btn-warning">Cancel</a>
+</form>
+{% endblock content %}

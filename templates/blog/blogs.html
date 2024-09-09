@@ -1,0 +1,21 @@
+{% extends "base/base.html" %} 
+{% block title %}Blogs{% endblock title %} 
+{% block content %}
+<a href="{% url "blog_create" %}" class="btn btn-primary">Create New Blog</a>
+<div class="row">
+  {% for blog in blogs %}
+  <div class="card m-2" style="width: 18rem">
+    <img src="{{blog.photo.url}}" class="card-img-top" id="blog_image" alt="..." />
+    <div class="card-body">
+      <h5 class="card-title">{{blog.author}}</h5>
+      <p class="card-text">{{blog.content|truncatechars:50}}</p>
+      {% if blog.author == user %}
+      <a href="{% url "blog_edit" blog.id %}" class="btn btn-primary">Edit</a>
+      <a href="{% url "blog_delete" blog.id %}" class="btn btn-danger">Delete</a>
+      {% endif %}
+      <a href="{% url "blog_detail" blog.id %}">Read More...</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
